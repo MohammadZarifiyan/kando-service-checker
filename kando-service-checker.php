@@ -43,6 +43,7 @@ function check_services() {
             CURLOPT_POST => true,
             CURLOPT_POSTFIELDS => http_build_query([
                 'key' => $provider->api_key,
+                'token' => $provider->api_key,
                 'action' => 'services',
             ])
         ]);
