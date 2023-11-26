@@ -81,7 +81,7 @@ function check_services() {
             (string) $provider->id,
             ...$api_services_id_list
         );
-        $missing_services = array_merge($missing_services, $wpdb->get_results($query, ARRAY_A));
+        $missing_services = array_merge($missing_services, $wpdb->get_results($query));
     }
 
     // Disable missing services
