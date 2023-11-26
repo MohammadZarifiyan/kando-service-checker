@@ -117,8 +117,7 @@ function send_service_disablement_report(array $disabled_services)
     );
     $disabled_services = implode(PHP_EOL.PHP_EOL, $disabled_services);
 
-    $message = sprintf(
-        <<<TEXT
+    $message = sprintf(<<<TEXT
 Hello
 These services were disabled due to deletion or disablement in the provider's API on your website.
 
