@@ -48,12 +48,14 @@ function check_services() {
             ])
         ]);
         $result = curl_exec($ch);
-        curl_close($ch);
 
         if (curl_getinfo($ch, CURLINFO_HTTP_CODE) !== 200) {
             $failed_providers[] = $provider->name;
+            curl_close($ch);
             continue;
         }
+
+        curl_close($ch);
 
         $decoded_result = json_decode($result);
         $api_services_id_list = [];
