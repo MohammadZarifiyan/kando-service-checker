@@ -75,7 +75,7 @@ function check_services() {
         }
 
         // Merge provider disabled services to $missing_services
-        $placeHolders = implode(', ', array_fill(0, count($api_services_id_list), '?'));
+        $placeHolders = implode(', ', array_fill(0, count($api_services_id_list), '%s'));
         $query = $wpdb->prepare(
             "SELECT id, name FROM wp_samyar_services WHERE api_provider_id=%s AND api_service_id NOT IN ($placeHolders)",
             (string) $provider->id,
@@ -91,7 +91,7 @@ function check_services() {
         },
         $missing_services
     );
-    $placeHolders = implode(', ', array_fill(0, count($missing_services_id_list), '?'));
+    $placeHolders = implode(', ', array_fill(0, count($missing_services_id_list), '%s'));
     $wpdb->query(
         $wpdb->prepare("UPDATE wp_samyar_services SET status=0, api_provider_id=NULL, api_service_id=NULL WHERE id IN ($placeHolders)", ...$missing_services_id_list)
     );
