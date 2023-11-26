@@ -7,12 +7,20 @@
  * Version: 1.0.0
  */
 
+add_filter('cron_schedules', function($schedules) {
+    $schedules['10_minutes'] = array(
+        'interval' => 600,
+        'display' => __('Every 10 Minutes'),
+    );
+    return $schedules;
+});
+
 add_action('init', 'schedule_kando_service_checker');
 add_action('check_services', 'check_services');
 
 function schedule_kando_service_checker() {
     if (!wp_next_scheduled('check_services')) {
-        wp_schedule_event(time(), ['interval' => 600, 'display' => __('Once every 10 minutes')], 'check_services');
+        wp_schedule_event(time(), '10_minutes', 'check_services');
     }
 }
 
