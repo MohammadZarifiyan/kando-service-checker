@@ -93,7 +93,7 @@ function check_services() {
     );
     $placeHolders = implode(', ', array_fill(0, count($missing_services_id_list), '%s'));
     $wpdb->query(
-        $wpdb->prepare("UPDATE wp_samyar_services SET status=0, api_provider_id=0, api_service_id='',add_type='manual' WHERE id IN ($placeHolders)", ...$missing_services_id_list)
+        $wpdb->prepare("UPDATE wp_samyar_services SET api_provider_id=0, api_service_id='',add_type='manual' WHERE id IN ($placeHolders)", ...$missing_services_id_list)
     );
 
     // Send report
@@ -119,7 +119,7 @@ function send_service_disablement_report(array $disabled_services)
 
     $message = sprintf(<<<TEXT
 Hello
-These services were disabled due to deletion or disablement in the provider's API on your website.
+These services were changed to manual mode due to deletion or disablement in the provider's API on your website.
 
 %s
 TEXT, $disabled_services);
