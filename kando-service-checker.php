@@ -101,7 +101,7 @@ function check_services() {
         send_service_disablement_report($missing_services);
     }
     if (count($failed_providers) > 0) {
-        send_provider_failure_report($missing_services);
+        send_provider_failure_report($failed_providers);
     }
 }
 
@@ -133,7 +133,7 @@ function send_provider_failure_report(array $providers)
 
     $message = sprintf(<<<TEXT
 Hello
-These services were disabled due to deletion or disablement in the provider's API on your website.
+The API of these providers returned an incorrect response. Please check them out.
 
 %s
 TEXT, implode(PHP_EOL, $providers));
