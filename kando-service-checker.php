@@ -68,7 +68,7 @@ function check_services() {
                 'UPDATE wp_samyar_services SET min=%d,max=%d WHERE api_provider_id=%s AND api_service_id=%s',
                 (int) $apiService->min,
                 (int) $apiService->max,
-                (string) $apiService->id,
+                (string) $provider->id,
                 $id
             );
             $wpdb->query($query);
